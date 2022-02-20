@@ -1,4 +1,4 @@
-# Dependency injection in dotnet core & dotnet 5/6  <!-- omit in toc -->
+# Dependency injection in dotnet core & dotnet 5/6 <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -7,10 +7,14 @@
   - [1.2. Reducing coupling](#12-reducing-coupling)
   - [1.3. Benefits of dependency injection](#13-benefits-of-dependency-injection)
 - [2. Three mehtods of inejction in ServiceCollection](#2-three-mehtods-of-inejction-in-servicecollection)
+  - [AddSingleton](#addsingleton)
+  - [AddScoped](#addscoped)
+  - [AddTransient](#addtransient)
 
 ## 1. Why dependency injection?
 
 ### 1.1. Highly coupled
+
 - The dependency injection mainly comes from an object oriented design principle, concrete classes must not be dependent on each other, this is called low coupling.
 - Then we say that they are highly coupled and opposite when they are not depending on each other.
 
@@ -19,7 +23,7 @@
 - The problem is that imagine that this `DataAccess` class rights, the data to SQL Server, and you have, for example, 10 lines of code that divides the data to SQL Server. If we want to switch from SQL Server to, for example, MySql or to a NoSql database, either you have to come and change the body of your method, which this is against the open `closed principle`, because what if we want to go back to SQL Server at some point, you have to again come back and put your old code back in here, or how about the tests that you might have lacunae test and integration test.
 - You break all your tests so your `Business` class now has dependency on your `DataAccess` class, because if I change the data access, I'm going to break the `Business` class.
 - Your new `DataAccess` necessarily won't have the same method store or even if they have the same methods, then the signature might be different.
-- Likewise, your `UserInterface` class has dependency on your `Business` class. 
+- Likewise, your `UserInterface` class has dependency on your `Business` class.
 - Again, if you want to change the way we validate data, we will have to change the body of the business class and that can again break a lot of parts of your application.
 
 ### 1.2. Reducing coupling
@@ -36,6 +40,7 @@
 [Example reducing coupling with interfaces](ExampleObjectCompositionWithInterface)
 
 ### 1.3. Benefits of dependency injection
+
 - Clean code
   - Your code is easier to understand
     - So when you use dependency injection, your code will be a lot cleaner and easier to understand, because, for example, if I only use a `Business` class or `IBusiness` interface and not the actual concrete classes, all you need to know is that what is the signature, what are the methods and what are the properties.
@@ -50,3 +55,15 @@
     - You can easily replace concrete classes because if you use the interface, you don't really need to know how actual concrete classes work and that will help you with low coupling.
 
 ## 2. Three mehtods of inejction in ServiceCollection
+
+### AddSingleton
+
+- Same instance for the entire application
+
+### AddScoped
+
+- Same instance for the whole request
+
+### AddTransient
+
+- Different instance every time object is requested or injected
