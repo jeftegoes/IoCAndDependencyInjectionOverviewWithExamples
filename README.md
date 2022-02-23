@@ -6,10 +6,15 @@
   - [1.1. Highly coupled](#11-highly-coupled)
   - [1.2. Reducing coupling](#12-reducing-coupling)
   - [1.3. Benefits of dependency injection](#13-benefits-of-dependency-injection)
-- [2. Three mehtods of inejction in ServiceCollection](#2-three-mehtods-of-inejction-in-servicecollection)
-  - [AddSingleton](#addsingleton)
-  - [AddScoped](#addscoped)
-  - [AddTransient](#addtransient)
+- [2. ServiceCollection and ServiceProviders class](#2-servicecollection-and-serviceproviders-class)
+  - [2.1. ServiceCollection](#21-servicecollection)
+  - [2.2. ServiceProvider](#22-serviceprovider)
+  - [2.3. Resume of responsabilities](#23-resume-of-responsabilities)
+- [3. Three mehtods of inejction in ServiceCollection](#3-three-mehtods-of-inejction-in-servicecollection)
+  - [3.1. AddSingleton](#31-addsingleton)
+  - [3.2. AddScoped](#32-addscoped)
+  - [3.3. AddTransient](#33-addtransient)
+- [4. Points of attention...](#4-points-of-attention)
 
 ## 1. Why dependency injection?
 
@@ -54,16 +59,68 @@
   - Concrete classes can be replaced
     - You can easily replace concrete classes because if you use the interface, you don't really need to know how actual concrete classes work and that will help you with low coupling.
 
-## 2. Three mehtods of inejction in ServiceCollection
+## 2. ServiceCollection and ServiceProviders class
 
-### AddSingleton
+### 2.1. ServiceCollection
+
+![image](Images/IServiceCollection.png)
+
+- In independence injection, there is a `bucket` or `container` which we put all the `metadata` inside it.
+- For example, imagine that in the `bucket`, your metadata is that `ILooger` has to be translated to a class called `Logger` because independents injection, we rely on interfaces in order to reduce the coupling and reduce the dependency instead of putting classes and objects in the `metadata` `bucket`.
+- We normally say every time you see an interface called `ILogger`, what I want is an object of type default `Logger`.
+- So we put all the `metadata` in a `bucket` and that `bucket`, which is our dependency injection container, is represented in `dotnet core` with a class called `ServiceCollection`.
+  - So a `ServiceCollection`, which implements an interface called `IServiceCollection`, that is your dependency injection container and it includes your `metadata`.
+  - It doesn't include your actual data.
+  - It's only `metadata` that sits in the `bucket` and your `metadata` begins with your interface.
+  - **A `ServiceCollection` is only responsible for including and containing the `metadata`.**
+    - **It doesn't create the actual C# or dotnet core objects.**
+
+### 2.2. ServiceProvider
+
+- `ServiceProvider` which implements an interface called `IServiceProvider` is responsible to create instances of objects and pass them to you.
+- The `ServiceCollection` in order to put our metadata in it, and then `ServiceCollection` will give us an instance of `ServiceProvider` and then we always ask `ServiceProvider` to give us the objects that we need.
+
+![image](Images/IServiceProvider.png)
+
+### 2.3. Resume of responsabilities
+- ServiceCollection
+  - So the responsibility of `ServiceCollection` is holding the metadata and mapping of types.
+- ServiceProvider
+  - The responsibility of `ServiceProvider` is creating instances and managing the lifetime of the instances.
+
+creating instances and managing the lifetime of the instances.
+
+## 3. Three mehtods of inejction in ServiceCollection
+
+### 3.1. AddSingleton
 
 - Same instance for the entire application
 
-### AddScoped
+### 3.2. AddScoped
 
 - Same instance for the whole request
 
-### AddTransient
+### 3.3. AddTransient
 
 - Different instance every time object is requested or injected
+
+## 4. Points of attention...
+
+- In this scenario whats the best options?
+
+```
+public class ClassWithStaticProperty
+{
+    public static List<int> PrimaryKeys;
+
+    public void Save()
+    {
+
+    }
+}
+```
+
+- AddScoped or AddTransient?
+  - And there is and is that the `PrimaryKeys` property is a static static properties are not dependent on the instance.
+  - There is only one instance of this property and that is across the whole application because it is a static.
+  - So no matter whether you use AddTransient or AddScoped, you will always have only one object `PrimaryKeys`.
