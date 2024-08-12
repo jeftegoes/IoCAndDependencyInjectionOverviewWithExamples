@@ -1,0 +1,59 @@
+<mxfile host="Electron" modified="2024-08-12T01:09:10.407Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="ccs6iQXhqA_nC2G6EZ8o" version="24.2.5" type="device">
+  <diagram name="Page-1" id="dQeiNejjAbZQLN7YZDwO">
+    <mxGraphModel dx="523" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="pZK1ddqQYXmrN1PJfE1U-1" target="pZK1ddqQYXmrN1PJfE1U-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-1" value="My App" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="190" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="pZK1ddqQYXmrN1PJfE1U-2" target="pZK1ddqQYXmrN1PJfE1U-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pZK1ddqQYXmrN1PJfE1U-2" target="pZK1ddqQYXmrN1PJfE1U-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-2" value="Object Factory" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="520" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-5" value="give me a &quot;Payment&quot; object" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="330" y="370" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pZK1ddqQYXmrN1PJfE1U-6" target="pZK1ddqQYXmrN1PJfE1U-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="pZK1ddqQYXmrN1PJfE1U-6" target="pZK1ddqQYXmrN1PJfE1U-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="540" />
+              <mxPoint x="640" y="611" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="pZK1ddqQYXmrN1PJfE1U-6" target="pZK1ddqQYXmrN1PJfE1U-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="550" />
+              <mxPoint x="630" y="691" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-6" value="configuration" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;" vertex="1" parent="1">
+          <mxGeometry x="551.5" y="490" width="57" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-8" value="PixPayment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="660" y="581" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-9" value="CreditCardPayment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="660" y="499" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pZK1ddqQYXmrN1PJfE1U-10" value="CashPayment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="660" y="661" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

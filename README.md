@@ -2,28 +2,55 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Why dependency injection?](#1-why-dependency-injection)
-  - [1.1. Highly coupled](#11-highly-coupled)
-  - [1.2. Reducing coupling](#12-reducing-coupling)
-  - [1.3. Benefits of dependency injection](#13-benefits-of-dependency-injection)
-- [2. ServiceCollection and ServiceProviders class](#2-servicecollection-and-serviceproviders-class)
-  - [2.1. ServiceCollection](#21-servicecollection)
-  - [2.2. ServiceProvider](#22-serviceprovider)
-  - [2.3. Resume of responsabilities](#23-resume-of-responsabilities)
-- [3. Three mehtods of inejction in ServiceCollection](#3-three-mehtods-of-inejction-in-servicecollection)
-  - [3.1. AddSingleton](#31-addsingleton)
-  - [3.2. AddScoped](#32-addscoped)
-  - [3.3. AddTransient](#33-addtransient)
-- [4. Points of attention...](#4-points-of-attention)
+- [1. Inversion of Control](#1-inversion-of-control)
+  - [1.1. Coding Scenario](#11-coding-scenario)
+  - [1.2. Ideal Solution](#12-ideal-solution)
+  - [1.3. Spring Container / Service Provider](#13-spring-container--service-provider)
+- [2. Why dependency injection?](#2-why-dependency-injection)
+  - [2.1. Highly coupled](#21-highly-coupled)
+  - [2.2. Reducing coupling](#22-reducing-coupling)
+  - [2.3. Benefits of dependency injection](#23-benefits-of-dependency-injection)
+- [3. C# ServiceCollection and ServiceProviders class](#3-c-servicecollection-and-serviceproviders-class)
+  - [3.1. ServiceCollection](#31-servicecollection)
+  - [3.2. ServiceProvider](#32-serviceprovider)
+  - [3.3. Resume of responsabilities](#33-resume-of-responsabilities)
+  - [3.4. Three mehtods of inejction in ServiceCollection](#34-three-mehtods-of-inejction-in-servicecollection)
+    - [3.4.1. AddSingleton](#341-addsingleton)
+    - [3.4.2. AddScoped](#342-addscoped)
+  - [3.5. AddTransient](#35-addtransient)
+  - [3.6. Points of attention...](#36-points-of-attention)
 
-## 1. Why dependency injection?
+# 1. Inversion of Control
 
-### 1.1. Highly coupled
+- Inversion of Control (IoC).
+  - The approach of outsourcing the construction and management of objects.
+
+## 1.1. Coding Scenario
+
+![Without Dependency](/Images/WithoutDependencyInjection.png)
+
+- App should be configurable.
+- Easily change the payment for another type.
+  - Pix, Credit Card, Debit Card...
+
+## 1.2. Ideal Solution
+
+![With Dependency](/Images/WithDependencyInjection.png)
+
+## 1.3. Spring Container / Service Provider
+
+- Primary functions:
+  - Create and manage objects (Inversion of Control).
+  - Inject object dependencies (Dependency Injection).
+
+# 2. Why dependency injection?
+
+## 2.1. Highly coupled
 
 - The dependency injection mainly comes from an object oriented design principle, concrete classes must not be dependent on each other, this is called low coupling.
 - Then we say that they are highly coupled and opposite when they are not depending on each other.
 
-[Example with highly coupled](ExampleObjectCompositionWithoutInterface)
+[C# Example with highly coupled](/Examples/C#/ObjectCompositionWithoutInterface/)
 
 - The problem is that imagine that this `DataAccess` class rights, the data to SQL Server, and you have, for example, 10 lines of code that divides the data to SQL Server. If we want to switch from SQL Server to, for example, MySql or to a NoSql database, either you have to come and change the body of your method, which this is against the open `closed principle`, because what if we want to go back to SQL Server at some point, you have to again come back and put your old code back in here, or how about the tests that you might have lacunae test and integration test.
 - You break all your tests so your `Business` class now has dependency on your `DataAccess` class, because if I change the data access, I'm going to break the `Business` class.
@@ -31,7 +58,7 @@
 - Likewise, your `UserInterface` class has dependency on your `Business` class.
 - Again, if you want to change the way we validate data, we will have to change the body of the business class and that can again break a lot of parts of your application.
 
-### 1.2. Reducing coupling
+## 2.2. Reducing coupling
 
 - To reduce this type of coupling or dependency, what we can do is that your user interface can work with an `interfaces`.
 - So instead of working directly with the `Business` class, which is the concrete class, it can work with an interface because the interface has the method and has the parameters for the method.
@@ -42,9 +69,9 @@
 - And now every time we want to actually do something in the `Business` class, dependency injection comes into play and creates an instance of the `Business` class and then makes a call to the actual methods inside the `Business` class.
 - Likewise, whenever we need an actual `DataAccess`, then dependency injection creates an instance of your `DataAccess` class, which implements the `IDataAccess` interface or `DataAccess` class, and performs the actual writing or storing data in your database.
 
-[Example reducing coupling with interfaces](ExampleObjectCompositionWithInterface)
+[C# Example reducing coupling with interfaces](/Examples/C#/ObjectCompositionWithoutInterface/)
 
-### 1.3. Benefits of dependency injection
+## 2.3. Benefits of dependency injection
 
 - Clean code
   - Your code is easier to understand
@@ -59,9 +86,9 @@
   - Concrete classes can be replaced
     - You can easily replace concrete classes because if you use the interface, you don't really need to know how actual concrete classes work and that will help you with low coupling.
 
-## 2. ServiceCollection and ServiceProviders class
+# 3. C# ServiceCollection and ServiceProviders class
 
-### 2.1. ServiceCollection
+## 3.1. ServiceCollection
 
 ![image](Images/IServiceCollection.png)
 
@@ -75,14 +102,15 @@
   - **A `ServiceCollection` is only responsible for including and containing the `metadata`.**
     - **It doesn't create the actual C# or dotnet core objects.**
 
-### 2.2. ServiceProvider
+## 3.2. ServiceProvider
 
 - `ServiceProvider` which implements an interface called `IServiceProvider` is responsible to create instances of objects and pass them to you.
 - The `ServiceCollection` in order to put our metadata in it, and then `ServiceCollection` will give us an instance of `ServiceProvider` and then we always ask `ServiceProvider` to give us the objects that we need.
 
 ![image](Images/IServiceProvider.png)
 
-### 2.3. Resume of responsabilities
+## 3.3. Resume of responsabilities
+
 - ServiceCollection
   - So the responsibility of `ServiceCollection` is holding the metadata and mapping of types.
 - ServiceProvider
@@ -90,21 +118,21 @@
 
 creating instances and managing the lifetime of the instances.
 
-## 3. Three mehtods of inejction in ServiceCollection
+## 3.4. Three mehtods of inejction in ServiceCollection
 
-### 3.1. AddSingleton
+### 3.4.1. AddSingleton
 
 - Same instance for the entire application
 
-### 3.2. AddScoped
+### 3.4.2. AddScoped
 
 - Same instance for the whole request
 
-### 3.3. AddTransient
+## 3.5. AddTransient
 
 - Different instance every time object is requested or injected
 
-## 4. Points of attention...
+## 3.6. Points of attention...
 
 - In this scenario whats the best options?
 
